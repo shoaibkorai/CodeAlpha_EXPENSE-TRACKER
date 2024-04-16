@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Summary</title>
+    <!-- Link Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/styles.css">
+    <style>
+        body {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-4">Expense Summary</h1>
+        <div class="card mt-4">
+            <div class="card-body">
+                <p class="mb-0">Total Expenses: {{ total_expenses }}</p>
+                <p>Balance: {{ balance }}</p>
+                <h2 class="mt-3">Category Wise Summary:</h2>
+                {% for category, expenses in category_summary.items() %}
+                <div class="card mt-3">
+                    <div class="card-header">
+                        {{ category }}
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group">
+                            {% for expense in expenses %}
+                            <li class="list-group-item">{{ expense.date }} - ${{ expense.amount }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <a href="/" class="btn btn-info mt-4">Go Back</a>
+    </div>
+</body>
+</html>
